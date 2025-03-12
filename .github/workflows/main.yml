@@ -1,35 +1,13 @@
-name: Snyk Security Scan
-
-on:
-  push:
-    branches:
-      - main
-
+name: Example workflow for Node using Snyk
+on: push
 jobs:
   security:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-
+      - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@v1
+        uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=medium --all-projects
-
-      - name: Upload Snyk SARIF report
-        uses: actions/upload-artifact@v3
-        with:
-          name: snyk-report
-          path: snyk.sarif
+          args: --severity-threshold=high

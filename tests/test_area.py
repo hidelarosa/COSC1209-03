@@ -15,6 +15,6 @@ def test_calculate_area_square_list():
 
 def test_calculate_area_square_accuracy():  
     # Last two digits of my student ID is 39 -- 100935039
-    length = 40  
-    expected_area = 40 * 40  # 1600  
+    length = 39 
+    expected_area = 39 * 39  
     assert calculate_area_square(length) == expected_area, f"Expected {expected_area}, but got {calculate_area_square(length)}"

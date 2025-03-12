@@ -1,0 +1,17 @@
+steps:
+  # Step 1: Build the Docker image using Cloud Build
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/app-image:${COMMIT_SHA}"
+      - "."
+
+  # Step 2: Push the Docker image to Artifact Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "us-central1-docker.pkg.dev/delarosa-cloud/harlan-100935039/app-image:${COMMIT_SHA}"
+
+options:
+  defaultLogsBucketBehavior: "REGIONAL_USER_OWNED_BUCKET" # Stores build logs in a regional user-owned bucket
